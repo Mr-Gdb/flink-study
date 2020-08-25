@@ -1,4 +1,4 @@
-package com.me.sparkCore
+package com.me.sparkCore.RDD
 
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD

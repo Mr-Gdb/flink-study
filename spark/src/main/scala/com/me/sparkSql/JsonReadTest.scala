@@ -3,6 +3,7 @@ package com.me.sparkSql
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.{StructField, StructType, _}
+
 object JsonReadTest {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setAppName("test").setMaster("local[2]")
@@ -21,5 +22,4 @@ object JsonReadTest {
     df.show(10)
     sparkSession.stop()
   }
-
 }
