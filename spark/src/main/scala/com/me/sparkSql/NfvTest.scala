@@ -23,10 +23,8 @@ object NfvTest {
     val schemaFields = fields.map(x => StructField(x.toLowerCase, StringType))
     val structType = StructType(schemaFields)
     val df = sqlContext.read.schema(structType).json("file:///C:\\Users\\gaodaibin\\Desktop\\NFV\\json\\nfv-test.json")
-    df.show(3)
     df.createOrReplaceTempView("test")
-    val sql = "select nfvoid,linkid,province,substr(createTime,0,10) as eventdate,vendorname,sum(case when ((to_unix_timestamp(starttime, 'yyyy-mm-dd hh:mm:ss') - to_unix_timestamp(eventtime, 'yyyy-mm-dd hh:mm:ss') > 35)) then 1 else 0 end) as probnum,count(1) as totalnum from test where submessagetype != '11005' group by nfvoid,linkid,province,eventdate,vendorname"
-    //val sql1 = "select starttime, eventtime,to_unix_timestamp(starttime, 'yyyy-MM-dd HH:mm:ss') as stime, to_unix_timestamp(eventtime, 'yyyy-mm-dd hh:mm:ss') as etime from test"
+    val sql = "select starttime, eventtime,to_unix_timestamp(starttime, 'yyyy-MM-dd HH:mm:ss') as stime, to_unix_timestamp(eventtime, 'yyyy-mm-dd hh:mm:ss') as etime from test"
     val resDF = sparkSession.sqlContext.sql(sql)
     resDF.show(3)
     sparkSession.stop()

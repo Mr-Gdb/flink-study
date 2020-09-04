@@ -25,6 +25,7 @@ object RddTest {
     loveRdd.foreach(println(_))
     val line: RDD[String] = spark.sparkContext.textFile("file:///C:\\Users\\gaodaibin\\Desktop\\NFV\\json\\test.txt")
     println(line.partitions.size)
+    loveRdd.collect()
     spark.close()
   }
 }
